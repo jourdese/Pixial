@@ -8,10 +8,11 @@
 import SwiftUI
 
 @main
-struct PixialApp: App {
+struct PixelMineApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView() // 👈 decides Launch vs Welcome
         }
     }
 }
+
