@@ -16,7 +16,7 @@ struct LaunchView: View {
             VStack {
                 Spacer()
                 
-                Image("logo-pixelmine-text-below")
+                Image("logo-pixial-text-below-1")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 130)
