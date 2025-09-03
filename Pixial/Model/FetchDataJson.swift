@@ -1,38 +1,31 @@
-//
-//  FetchDataJson.swift
-//  Pixial
-//
-//  Created by Jourdese Palacio on 9/3/25.
-//
-
 import Foundation
-import SwiftUI
 import Combine
 
 struct Post: Codable, Identifiable {
-    enum CodingKeys: CodingKey {
+    enum CodingKeys: String, CodingKey {
         case image
         case like_count
         case comment_count
         case view_count
-        case desciption
+        case description
         case profile_img
         case profile_name
         case profile_id
     }
-    var id = UUID()
+    
+    var id = UUID()  // Use stable ID
     var image: String
     var like_count: Int
     var comment_count: Int
     var view_count: Int
-    var desciption: String
+    var description: String
     var profile_img: String
     var profile_name: String
     var profile_id: String
 }
 
 class ReadJsonData: ObservableObject {
-    @Published var posts = [Post]()
+    @Published var posts: [Post] = []
     
     init() {
         loadData()
@@ -40,15 +33,16 @@ class ReadJsonData: ObservableObject {
     
     func loadData() {
         guard let url = Bundle.main.url(forResource: "posts", withExtension: "json") else {
-            print("json file not found")
+            print("❌ posts.json not found in bundle")
             return
         }
         
-        let data = try? Data(contentsOf: url)
-        let posts = try? JSONDecoder().decode([Post].self, from: data!)
-        
-        self.posts = posts!
+        do {
+            let data = try Data(contentsOf: url)
+            let decoded = try JSONDecoder().decode([Post].self, from: data)
+            self.posts = decoded
+        } catch {
+            print("❌ Failed to load posts.json:", error)
+        }
     }
-    
 }
-
