@@ -9,7 +9,22 @@ import SwiftUI
 
 struct PostCardHeader: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Image("cat")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 40, height: 40)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+            
+            VStack(alignment: .leading){
+                Text("Garlic Palacio").bold()
+                Text("garlic_palacio@")
+                    .font(.footnote)
+                    .foregroundStyle(Color(.secondaryLabel))
+            }
+            Spacer()
+            Image(systemName: "ellipsis")
+        }
     }
 }
 
