@@ -4,24 +4,31 @@ import Combine
 struct Post: Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case image
-        case like_count
+        case star_count
         case comment_count
-        case view_count
+        case flag_green_count
+        case flag_red_count
+        case react_count
         case description
         case profile_img
         case profile_name
         case profile_id
+
+
     }
     
-    var id = UUID()  // Use stable ID
+    var id = UUID()
     var image: String
-    var like_count: Int
+    var star_count: Int
     var comment_count: Int
-    var view_count: Int
+    var react_count: Int
+    var flag_green_count: Int
+    var flag_red_count: Int
     var description: String
     var profile_img: String
     var profile_name: String
     var profile_id: String
+
 }
 
 class ReadJsonData: ObservableObject {
@@ -36,13 +43,17 @@ class ReadJsonData: ObservableObject {
             print("❌ posts.json not found in bundle")
             return
         }
-        
+
         do {
             let data = try Data(contentsOf: url)
             let decoded = try JSONDecoder().decode([Post].self, from: data)
-            self.posts = decoded
+            DispatchQueue.main.async {
+                self.posts = decoded
+            }
         } catch {
-            print("❌ Failed to load posts.json:", error)
+            print("❌ Failed to load posts.json: \(error)")
         }
     }
+
+
 }

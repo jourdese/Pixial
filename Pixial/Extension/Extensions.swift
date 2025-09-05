@@ -23,3 +23,24 @@ struct RoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
+
+extension Int {
+    func formattedString() -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 1
+        
+        let thousand = 1000
+        let million = thousand * thousand
+        
+        if self >= million {
+            let formattedNumber = Double(self) / Double(million)
+            return "\(formatter.string(from: NSNumber(value: formattedNumber)) ?? "")M"
+        } else if self >= thousand {
+            let formattedNumber = Double(self) / Double(thousand)
+            return "\(formatter.string(from: NSNumber(value: formattedNumber)) ?? "")K"
+        } else {
+            return "\(self)"
+        }
+    }
+}

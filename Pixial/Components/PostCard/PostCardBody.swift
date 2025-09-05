@@ -8,6 +8,15 @@
 import SwiftUI
 
 struct PostCardBody: View {
+    
+    let image: String
+    let star_count: Int
+    let comment_count: Int
+    let react_count: Int
+    let flag_green_count: Int
+    let flag_red_count: Int
+    let description: String
+    
     var body: some View {
         VStack (alignment: .leading, spacing: 10) {
             Image("post1")
@@ -18,16 +27,16 @@ struct PostCardBody: View {
         HStack {
                 HStack {
                     Image(systemName: "star")
-                    Text("245")
+                    Text("\(star_count.formattedString())")
                 }
                 HStack {
                     Image(systemName: "flag")
                     HStack(spacing: 0) {
-                        Text("200")
+                        Text("\(flag_green_count.formattedString())")
                             .foregroundColor(.green)
                         Text("/")
                             .foregroundColor(.green) // or .primary
-                        Text("245")
+                        Text("\(flag_red_count.formattedString())")
                             .foregroundColor(.red)
                     }
                 }
@@ -37,15 +46,15 @@ struct PostCardBody: View {
                 }
                 HStack {
                     Image(systemName: "bubble.left")
-                    Text("12")
+                    Text("\(comment_count.formattedString())")
                 }
                 HStack {
                     Image(systemName: "smiley")
-                    Text("245")
+                    Text("\(react_count.formattedString())")
                 }
             }
         .font(.callout)
-            Text("Explore machine learning algorithms in R!")
+            Text(description)
                 .lineLimit(2)
                 .multilineTextAlignment(.leading)
                 .font(.callout)
@@ -55,6 +64,6 @@ struct PostCardBody: View {
     }
 }
 
-#Preview {
-    PostCardBody()
-}
+//#Preview {
+//    PostCardBody()
+//}
