@@ -12,10 +12,14 @@ struct StoryListView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-              
+              AddStoryCard()
+                ForEach(postData.posts) { post in
+                    StoryCard(image: post.profile_img)
+                }
 
             }
         }
+        .offset(x: 15)
     }
 }
 

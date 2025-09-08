@@ -51,7 +51,7 @@ struct WelcomeView: View {
                             .foregroundColor(.pixialGray)
                         
                         // 👇 NavigationLink replaces Button here
-                        NavigationLink(destination: HelloWorld()) {
+                        NavigationLink(destination: HomeView()) {
                             Text("Login")
                                 .font(.subheadline)
                                 .fontWeight(.heavy)
